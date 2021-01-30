@@ -1996,6 +1996,11 @@ var Main = function Main(props) {
       time = _useState2[0],
       setTime = _useState2[1];
 
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null),
+      _useState4 = _slicedToArray(_useState3, 2),
+      background = _useState4[0],
+      setBackground = _useState4[1];
+
   var definitions = {
     sd: {
       height: 480,
@@ -2011,10 +2016,10 @@ var Main = function Main(props) {
     setResolution(e.target.value);
   };
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)("sd"),
-      _useState4 = _slicedToArray(_useState3, 2),
-      resolution = _useState4[0],
-      setResolution = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)("sd"),
+      _useState6 = _slicedToArray(_useState5, 2),
+      resolution = _useState6[0],
+      setResolution = _useState6[1];
 
   var counter = function counter(ctx, num, intvl) {
     var canvas = canvasRef.current;
@@ -2023,6 +2028,13 @@ var Main = function Main(props) {
     ctx.fillStyle = "grey";
     ctx.textAlign = "center";
     ctx.fillText("" + num, canvas.width / 2, canvas.height / 2);
+    var ctx2 = canvas.getContext("2d");
+    var imageObj1 = new Image();
+    imageObj1.src = background;
+
+    imageObj1.onload = function () {
+      ctx2.drawImage(imageObj1, 0, 0);
+    };
 
     if (num == 0) {
       clearInterval(intvl);
@@ -2083,16 +2095,20 @@ var Main = function Main(props) {
     a.click();
   };
 
-  var handleBackgroundChange = function handleBackgroundChange(base64) {
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
+    console.log(background);
     var canvas = canvasRef.current;
-    var ctx = canvas.getContext("2d");
+    var ctx2 = canvas.getContext("2d");
     var imageObj1 = new Image();
-    imageObj1.src = base64;
+    imageObj1.src = background;
+    console.log(imageObj1);
 
     imageObj1.onload = function () {
-      ctx.drawImage(imageObj1, 0, 0);
+      ctx2.drawImage(imageObj1, 0, 0);
     };
-  };
+  }, [background]);
+
+  var handleBackgroundChange = function handleBackgroundChange() {};
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("main", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
@@ -2148,7 +2164,7 @@ var Main = function Main(props) {
           value: "mrbear" // checked={backgroundImage === "mrbear"}
           ,
           onChange: function onChange(e) {
-            return handleBackgroundChange(_img__WEBPACK_IMPORTED_MODULE_3__.mrbear);
+            return setBackground(_img__WEBPACK_IMPORTED_MODULE_3__.mrbear);
           }
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
           htmlFor: "mrbear",
@@ -2162,7 +2178,7 @@ var Main = function Main(props) {
           value: "biggles" // checked={backgroundImage === "biggles"}
           ,
           onChange: function onChange(e) {
-            return handleBackgroundChange(_img__WEBPACK_IMPORTED_MODULE_3__.biggles);
+            return setBackground(_img__WEBPACK_IMPORTED_MODULE_3__.biggles);
           }
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
           htmlFor: "biggles",

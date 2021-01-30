@@ -10,6 +10,8 @@ const Main = (props) => {
 
     const [time, setTime] = useState(100);
 
+    const [background, setBackground] = useState(null);
+
     const definitions = {
         sd: {
             height: 480,
@@ -34,6 +36,13 @@ const Main = (props) => {
         ctx.fillStyle = "grey";
         ctx.textAlign = "center";
         ctx.fillText("" + num, canvas.width / 2, canvas.height / 2);
+        const ctx2 = canvas.getContext("2d");
+
+        let imageObj1 = new Image();
+        imageObj1.src = background;
+        imageObj1.onload = function () {
+            ctx2.drawImage(imageObj1, 0, 0);
+        };
         if (num == 0) {
             clearInterval(intvl);
         }
@@ -42,6 +51,9 @@ const Main = (props) => {
     const startAnimation = () => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");
+
+    
+
         var num = time;
         var intvl = setInterval(function () {
             counter(ctx, num--, intvl);
@@ -82,15 +94,21 @@ const Main = (props) => {
         a.click();
     };
 
-    const handleBackgroundChange = (base64) => {
-        const canvas = canvasRef.current;
-        const ctx = canvas.getContext("2d");
+    
+useEffect(()=>{
+console.log(background);
+  const canvas = canvasRef.current;
+  const ctx2 = canvas.getContext("2d");
+  
+  let imageObj1 = new Image();
+  imageObj1.src = background;
+  console.log(imageObj1);
+  imageObj1.onload = function () {
+      ctx2.drawImage(imageObj1, 0, 0);
+  };
+},[background])
 
-        let imageObj1 = new Image();
-        imageObj1.src = base64;
-        imageObj1.onload = function () {
-            ctx.drawImage(imageObj1, 0, 0);
-        };
+    const handleBackgroundChange = () => {
     };
 
     return (
@@ -138,7 +156,7 @@ const Main = (props) => {
                         name="backgroundImage"
                         value="mrbear"
                         // checked={backgroundImage === "mrbear"}
-                        onChange={(e) => handleBackgroundChange(images.mrbear)}
+                        onChange={(e) => setBackground(images.mrbear)}
                     />
                     <label htmlFor="mrbear">
                         <img src={images.mrbear} />
@@ -150,7 +168,7 @@ const Main = (props) => {
                         name="backgroundImage"
                         value="biggles"
                         // checked={backgroundImage === "biggles"}
-                        onChange={(e) => handleBackgroundChange(images.biggles)}
+                        onChange={(e) => setBackground(images.biggles)}
                     />
                     <label htmlFor="biggles">
                         <img src={images.biggles} />
