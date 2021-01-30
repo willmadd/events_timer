@@ -1,0 +1,16 @@
+button{
+    padding: 8px 16px; 
+    border-radius: 4px;
+    &.primary{
+        background-color: $primary;
+    }
+    &.secondary{
+        background-color: $secondary;
+    }
+}
+
+input{
+    background-color: white;
+    padding:8px 12px;
+    border: 1px solid grey;
+}

@@ -1,0 +1,19 @@
+$headingFont:'Roboto Slab', serif;
+
+
+$bodyFont: 'Roboto Slab', serif;
+
+h1, h2, h3, h4, h5, h6{
+    font-family: $headingFont;
+    margin:0;
+    color: $black;
+    font-weight: 700;;
+}
+
+p, label, button{
+
+    font-family: $bodyFont;
+    margin:0;
+    color: $black;
+    font-weight: 300;;
+}

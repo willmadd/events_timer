@@ -1,0 +1,12 @@
+.canvas__wrapper{
+    canvas{
+        border:1px solid $black;
+        background-color: white;
+    }
+}
+
+main{
+    display: grid;
+    grid-template-columns:  250px 1fr;
+    background-color: $white;
+}

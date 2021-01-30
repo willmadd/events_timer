@@ -1,11 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Image from "./Image";
+import Image from "./ImageThree";
+import '../../sass/app.scss';
+import Header from "./Header";
+// import "../../sass/styles/globalstyles.scss";
 
 function App() {
     return (
         <div className="container">
-            <h1>Events Timer</h1>
+            <Header />
             <Image />
         </div>
     );
